@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using Testy.Internals;
 
-namespace Testy
+namespace Testy.Files
 {
     /// <summary>
     /// Represents (and possibly creates) a test directory, which is automatically cleaned up when <see cref="TemporaryTestDirectory"/> instance is disposed

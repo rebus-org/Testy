@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Testy
+namespace Testy.General
 {
     /// <summary>
     /// Action that gets called when the object is disposed
