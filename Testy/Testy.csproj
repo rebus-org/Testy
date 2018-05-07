@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+	<PropertyGroup>
+		<TargetFrameworks>net45; net461; netstandard1.3; netstandard2.0</TargetFrameworks>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+	  <DocumentationFile>bin\Release\$(TargetFramework)\Testy.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)'=='net45'">
+	    <DefineConstants>NETFULL</DefineConstants>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(TargetFramework)'=='net461'">
+	    <DefineConstants>NETFULL</DefineConstants>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
+	    <DefineConstants>NETCORE</DefineConstants>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+	    <DefineConstants>NETCORE</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NUnit" Version="3.7.0" />
+	</ItemGroup>
+</Project>

@@ -9,7 +9,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stuff", "stuff", "{1ABDD7C1
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testy", "Testy\Testy.csproj", "{3A93A5A9-DBA7-4C6B-BA61-18488CCFE9EF}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A93A5A9-DBA7-4C6B-BA61-18488CCFE9EF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3A93A5A9-DBA7-4C6B-BA61-18488CCFE9EF}.Debug|x86.Build.0 = Debug|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
