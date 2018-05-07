@@ -14,6 +14,12 @@ namespace Testy
 
         readonly string _directoryPath;
 
+        /// <summary>
+        /// Creates the temp test directory. If <paramref name="rootDirectory"/> is specified, the directory
+        /// will be created as a subdirectory of that root. Otherwise, the base directory of the current
+        /// appdomain/appcontest is used.
+        /// The directory will automatically be created if <paramref name="automaticallyCreate"/> is true.
+        /// </summary>
         public TemporaryTestDirectory(string rootDirectory = null, bool automaticallyCreate = true)
         {
             var number = Interlocked.Increment(ref _counter);
@@ -38,11 +44,20 @@ namespace Testy
             }
         }
 
+        /// <summary>
+        /// Implicitly casts this temp test dir to a string
+        /// </summary>
         public static implicit operator string(TemporaryTestDirectory temporaryTestDirectory) =>
             temporaryTestDirectory._directoryPath;
 
+        /// <summary>
+        /// Returns the path of the test dir
+        /// </summary>
         public override string ToString() => _directoryPath;
 
+        /// <summary>
+        /// Deletes the temporary test directory
+        /// </summary>
         public void Dispose()
         {
             if (!Directory.Exists(_directoryPath)) return;
