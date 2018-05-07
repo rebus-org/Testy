@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Testy
+namespace Testy.Internals
 {
     static class Shims
     {
