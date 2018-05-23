@@ -12,7 +12,6 @@
 		<PackageProjectUrl>https://github.com/rebus-org/Testy</PackageProjectUrl>
 		<Copyright>Copyright 2018</Copyright>
 		<PackageTags>testing nunit nifry</PackageTags>
-		<PackageIconUrl>https://github.com/rebus-org/Rebus/raw/master/artwork/little_rebusbus2_copy-200x200.png</PackageIconUrl>
 		<RepositoryUrl>https://github.com/rebus-org/Testy</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
