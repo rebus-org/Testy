@@ -18,12 +18,32 @@ namespace Testy.Extensions
         /// <summary>
         /// Serializes the object to indented JSON
         /// </summary>
-        public static string ToPrettyJson(this object obj) => JsonConvert.SerializeObject(obj, Formatting.Indented);
+        public static string ToPrettyJson(this object obj)
+        {
+            if (obj is string jsonText && jsonText.IsJson())
+            {
+                return JsonConvert.DeserializeObject<JObject>(jsonText)
+                    .ToString(Formatting.Indented);
+            }
+
+            return JsonConvert.SerializeObject(obj, Formatting.Indented);
+        }
 
         /// <summary>
-        /// Pretty-formats the given JSON text
+        /// Checks whether the given <paramref name="jsonText"/> contains valid JSON
         /// </summary>
-        public static string IndentJson(this string jsonText) => JObject.Parse(jsonText).ToString(Formatting.Indented);
+        public static bool IsJson(this string jsonText)
+        {
+            try
+            {
+                JObject.Parse(jsonText);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Serializes and deserialized the given <paramref name="instance"/>, effectively cloning the object.

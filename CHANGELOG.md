@@ -11,3 +11,7 @@
 ## 0.0.4
 
 * Add JSON clone method
+
+## 0.0.5
+
+* Niftify JSON stuff some more

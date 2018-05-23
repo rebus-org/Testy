@@ -4,7 +4,11 @@ Just some nifites (dependent on NUnit 3) to help with testing things.
 
 It's a highly personal collection, so it's probably not useful for that many people.
 
+
+
+
 ## What it can do
+
 
 ### Fixture base
 
@@ -20,6 +24,7 @@ var disposable = Using(new SomethingDisposable());
 
 The disposables are disposed in the reverse order of which they were registered, which is natural,
 because it's a stack.
+
 
 ### Temporary test directory
 
@@ -77,4 +82,31 @@ protected override void SetUp()
 	// now use _transaction throughout the tests
 }
 
+```
+
+
+### Fun with JSON
+
+Testy has extensions that makes a few JSON tricks readily available to your tests. E.g. you can
+easily dump an object to the console like this:
+
+```csharp
+Console.WriteLine(obj.ToJson());
+```
+
+provided, of course, that the object is JSON serializable. If the default output is too condensed, you can
+
+```csharp
+Console.WriteLine(obj.ToPrettyJson());
+```
+
+to indent it nicely.
+
+The `ToPrettyJson` method above will automatically detect whether the input is a JSON string, in which case
+it will deserialize it and return it indented too.
+
+If you're in doubt whether a string `str` is valid JSON, you can check it like this:
+
+```csharp
+Assert.That(str.IsJson(), Is.True, $"Expected {str} to contain valid JSON");
 ```
