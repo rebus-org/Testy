@@ -20,9 +20,9 @@ namespace Testy.Extensions
         /// </summary>
         public static string ToPrettyJson(this object obj)
         {
-            if (obj is string jsonText && jsonText.IsJson())
+            if (obj is string text && text.IsJson())
             {
-                return JsonConvert.DeserializeObject<JObject>(jsonText)
+                return JsonConvert.DeserializeObject<JObject>(text)
                     .ToString(Formatting.Indented);
             }
 
@@ -30,13 +30,13 @@ namespace Testy.Extensions
         }
 
         /// <summary>
-        /// Checks whether the given <paramref name="jsonText"/> contains valid JSON
+        /// Checks whether the given <paramref name="text"/> contains valid JSON
         /// </summary>
-        public static bool IsJson(this string jsonText)
+        public static bool IsJson(this string text)
         {
             try
             {
-                JObject.Parse(jsonText);
+                JObject.Parse(text);
                 return true;
             }
             catch
