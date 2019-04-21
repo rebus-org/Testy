@@ -24,7 +24,7 @@ namespace Testy.Files
         {
             var number = Interlocked.Increment(ref _counter);
 
-            _directoryPath = Path.Combine(rootDirectory ?? Shims.CurrentBaseDirectory(), $"tetdirectory-{number}");
+            _directoryPath = Path.Combine(rootDirectory ?? Shims.CurrentBaseDirectory(), $"testdirectory-{number}");
 
             if (automaticallyCreate)
             {
