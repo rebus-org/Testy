@@ -23,3 +23,7 @@
 ## 0.0.7
 
 * Corect spelning
+
+## 0.0.8
+
+* Target .NET 4.6 and .NET Core App 2.0

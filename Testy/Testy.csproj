@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 	<PropertyGroup>
-		<TargetFrameworks>net45;net46;netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
 		
 		<OutputType>Library</OutputType>
 		<RootNamespace>Testy</RootNamespace>
@@ -37,18 +37,6 @@
 		<DocumentationFile>bin\Release\Testy.xml</DocumentationFile>
 	</PropertyGroup>
 	
-	<PropertyGroup Condition="'$(TargetFramework)'=='net45'">
-	    <DefineConstants>NETFULL</DefineConstants>
-	</PropertyGroup>
-	
-	<PropertyGroup Condition="'$(TargetFramework)'=='net46'">
-	    <DefineConstants>NETFULL</DefineConstants>
-	</PropertyGroup>
-	
-	<PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp2.0'">
-	    <DefineConstants>NETCORE</DefineConstants>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<PackageReference Include="microsoft.net.test.sdk" Version="16.0.1" />
 		<PackageReference Include="newtonsoft.json" Version="12.0.1" />
