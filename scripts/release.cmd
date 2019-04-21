@@ -24,6 +24,8 @@ if exist "%deploydir%" (
 	rd "%deploydir%" /s/q
 )
 
+mkdir "%deploydir%"
+
 pushd %root%
 
 dotnet restore
