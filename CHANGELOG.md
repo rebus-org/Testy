@@ -18,3 +18,7 @@
 * Update packages
 * Corect spelning
 * Target .NET 4.6 and .NET Core App 2.0
+
+## 0.0.6
+
+* Don't give back paths to test directories that exist

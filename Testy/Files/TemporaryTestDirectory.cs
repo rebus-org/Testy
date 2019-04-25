@@ -22,9 +22,14 @@ namespace Testy.Files
         /// </summary>
         public TemporaryTestDirectory(string rootDirectory = null, bool automaticallyCreate = true)
         {
-            var number = Interlocked.Increment(ref _counter);
+            while (true)
+            {
+                var number = Interlocked.Increment(ref _counter);
 
-            _directoryPath = Path.Combine(rootDirectory ?? Shims.CurrentBaseDirectory(), $"testdirectory-{number}");
+                _directoryPath = Path.Combine(rootDirectory ?? Shims.CurrentBaseDirectory(), $"testdirectory-{number}");
+
+                if (!Directory.Exists(_directoryPath)) break;
+            }
 
             if (automaticallyCreate)
             {
