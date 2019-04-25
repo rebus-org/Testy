@@ -73,11 +73,11 @@ namespace Testy.Files
 
                 Console.WriteLine($"Deleted test directory {_directoryPath}");
             }
-            catch
+            catch(Exception exception)
             {
                 if (Directory.Exists(_directoryPath))
                 {
-                    throw;
+                    throw new IOException($"Could not delete directory {_directoryPath}", exception);
                 }
             }
         }

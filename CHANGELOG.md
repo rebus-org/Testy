@@ -22,3 +22,7 @@
 ## 0.0.6
 
 * Don't give back paths to test directories that exist
+
+## 0.0.7
+
+* Better exception if directory removal fails
