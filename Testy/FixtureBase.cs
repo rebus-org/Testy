@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using NUnit.Framework;
+using Testy.Benchmarking;
+using Testy.Files;
+
+// ReSharper disable UnusedMember.Global
 
 namespace Testy
 {
@@ -58,5 +62,16 @@ namespace Testy
                 disposable.Dispose();
             }
         }
+
+        /// <summary>
+        /// Creates a new timer scope with the given <paramref name="description"/>. If <paramref name="countForRateCalculation"/>
+        /// is set, a rate will be calculated and printed in addition to the duration.
+        /// </summary>
+        protected IDisposable TimerScope(string description, int? countForRateCalculation = null) => new TimerScope(description, countForRateCalculation);
+
+        /// <summary>
+        /// Creates a new temporary test directory, which will automatically be removed after the test has finished executing
+        /// </summary>
+        protected TemporaryTestDirectory NewTempDirectory() => Using(new TemporaryTestDirectory());
     }
 }
