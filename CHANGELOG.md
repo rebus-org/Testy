@@ -22,4 +22,7 @@
 * Better exception if directory removal fails
 
 ## 0.0.8
-* Add time scope
+* Add timer scope
+
+## 0.0.9
+* Add periodic callback

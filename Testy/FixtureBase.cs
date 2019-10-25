@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using NUnit.Framework;
 using Testy.Benchmarking;
 using Testy.Files;
+using Testy.Timers;
 
 // ReSharper disable UnusedMember.Global
 
@@ -68,6 +69,11 @@ namespace Testy
         /// is set, a rate will be calculated and printed in addition to the duration.
         /// </summary>
         protected IDisposable TimerScope(string description, int? countForRateCalculation = null) => new TimerScope(description, countForRateCalculation);
+
+        /// <summary>
+        /// Creates a new periodic callback with the given <paramref name="interval"/>
+        /// </summary>
+        protected IDisposable PeriodicCallback(TimeSpan interval, Action callback) => new PeriodicCallback(interval, callback);
 
         /// <summary>
         /// Creates a new temporary test directory, which will automatically be removed after the test has finished executing
