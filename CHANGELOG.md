@@ -27,5 +27,5 @@
 ## 0.0.9
 * Add periodic callback
 
-## 0.0.10
+## 0.0.11
 * Concurrent queue extensions
