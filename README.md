@@ -84,6 +84,109 @@ protected override void SetUp()
 
 ```
 
+### Simple benchmarking
+
+If you want to measure the time something takes, and possible calculate a rate (e.g. something like "number of whatevers per second") along with that,
+then Testy provides a `TimerScope` that can do that. In your test fixture derived from `FixtureBase`, you can simply go
+
+```csharp
+using (TimerScope("Process one billion whatevers")) 
+{
+	// do stuff that takes time in here
+}
+```
+
+and then the timing information will be printed like this after the test:
+
+```
+SCOPE 'Process one billion whatevers' completed in 450.2332 ms
+```
+
+If you want to calculate a rate along with that, pass it in as the optional `countForRateCalculation` parameter like this:
+
+```csharp
+using (TimerScope("Handle 10000 messages", countForRateCalculation: 10000)) 
+{
+	// process the 10000 messages in here
+}
+```
+
+and then the output will read
+
+```
+SCOPE 'Handle 10000 messages' completed in 550.43 ms | 0.055043 ms/item | 18.16761441055175 items/ms
+```
+
+If you're not in the test fixture, or your test fixture is not derived from `FixtureBase`, you can just new up the timer scope:
+
+```csharp
+using (new TimerScope(...))
+{
+	// no problemo!
+}
+```
+
+### Fun with concurrent queues
+
+If you're writing tests that put stuff in a `ConcurrentQueue<T>`, and you want to e.g. wait for the queue to contain a number of items,
+then Testy provides a `WaitOrDie(...)` extension to help you with that. Check this out – this will wait for the queue to contain at least 100 items:
+
+```csharp
+await queue.WaitOrDie(q => q.Count >= 100);
+```
+
+Often you want an exact number of items – say 100 – and you want it to fail, if it exceeds that number. This code accomplishes that:
+
+```csharp
+await queue.WaitOrDie(q => q.Count == 100, failExpression: q => q.Count > 100);
+```
+
+If case of failure, if you want the thrown exception to contain additional details about what might have caused the failure, you can
+provide a `failureDetailsFunction`:
+
+```csharp
+await queue.WaitOrDie(
+	q => q.Count == 100, 
+	failExpression: q => q.Count > 100,
+	failureDetailsFunction: () => $@"Here's the queue contents: {string.Join(", ", queue)}"
+);
+```
+
+If you're not happy with the default 5 s timeout, do this:
+
+```csharp
+await queue.WaitOrDie(q => q.Count >= 100, timeoutSeconds: 60); // take it easy
+```
+
+
+### Periodically doing something
+
+When you're writing tests that process stuff asynchronously, you often want to periodically print out information on how that goes.
+E.g. if your asynchronous SUT puts things in a `ConcurrentQueue<string>`, and you wait for the queue to contain 100 items, you might
+be waiting by using the aforementioned `WaitOrDie(...)` function:
+
+```csharp
+await queue.WaitOrDie(q => q.Count == 100, failExpression: q => q.Count > 100);
+```
+
+How about we print out how many items are in the queue every second, while running the test? Easy! That can be done like this:
+
+```csharp
+using (PeriodicCallback(TimeSpan.FromSeconds(1), () => Console.WriteLine($"Count: {queue.Count}")))
+{
+	await queue.WaitOrDie(q => q.Count == 100, failExpression: q => q.Count > 100);
+}
+```
+
+If you're not in the test fixture, or your test fixture is not derived from `FixtureBase`, you can just new up the periodic callback:
+
+```csharp
+using (new PeriodicCallback(...))
+{
+	// no problemo!
+}
+```
+
 
 ### Fun with JSON
 
