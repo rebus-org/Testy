@@ -9,6 +9,9 @@ using NUnit.Framework;
 
 namespace Testy.Extensions
 {
+    /// <summary>
+    /// Extensions for <see cref="ConcurrentQueue{T}"/>
+    /// </summary>
     public static class ConcurrentQueueExtensions
     {
         /// <summary>
