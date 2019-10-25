@@ -15,7 +15,7 @@ namespace Testy.Benchmarking
         /// <summary>
         /// Creates the scope
         /// </summary>
-        public TimerScope(string description, int? countForRateCalculation)
+        public TimerScope(string description, int? countForRateCalculation = null)
         {
             _description = description;
             _countForRateCalculation = countForRateCalculation;
@@ -27,7 +27,7 @@ namespace Testy.Benchmarking
         public void Dispose()
         {
             var elapsedMs = _stopwatch.Elapsed.TotalMilliseconds;
-            
+
             if (_countForRateCalculation == null)
             {
                 Console.WriteLine($"SCOPE '{_description}' completed in {elapsedMs} ms");

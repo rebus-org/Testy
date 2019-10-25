@@ -29,3 +29,6 @@
 
 ## 0.0.11
 * Concurrent queue extensions
+
+## 0.0.12
+* Make `countForRateCalculation` in ctor of `TimerScope` nullable, too
