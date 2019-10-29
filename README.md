@@ -213,3 +213,53 @@ If you're in doubt whether a string `str` is valid JSON, you can check it like t
 ```csharp
 Assert.That(str.IsJson(), Is.True, $"Expected {str} to contain valid JSON");
 ```
+
+If you just want to quickly print an object as JSON to the console, you can just
+```csharp
+object.DumpJson();
+```
+and then that's exactly what happens.
+
+### Fun with tables
+
+Let's say you have a sequence of objects like this:
+```csharp
+var objects = new[]
+{
+	new {FirstColumn = "r1", SecondColumn = "hej", ThirdColumn = "hej igen"},
+	new {FirstColumn = "r2", SecondColumn = "hej", ThirdColumn = "hej igen"},
+};
+```
+You can get them in tabular form like this:
+```csharp
+Console.WriteLine($@"Got the following objects:
+
+{objects.ToTable()}");
+```
+which will render nicely like this:
+```
+Got the following objects:
+
++-------------+--------------+-------------+
+| FirstColumn | SecondColumn | ThirdColumn |
++-------------+--------------+-------------+
+| r1          | hej          | hej igen    |
++-------------+--------------+-------------+
+| r2          | hej          | hej igen    |
++-------------+--------------+-------------+
+```
+If you're lazy, and you just want to output that tabular data to the console right away, you can just go
+```csharp
+objects.DumpTable();
+```
+and 
+```
++-------------+--------------+-------------+
+| FirstColumn | SecondColumn | ThirdColumn |
++-------------+--------------+-------------+
+| r1          | hej          | hej igen    |
++-------------+--------------+-------------+
+| r2          | hej          | hej igen    |
++-------------+--------------+-------------+
+```
+will be printed.

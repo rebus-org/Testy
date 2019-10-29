@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Testy.Extensions
@@ -20,6 +21,8 @@ namespace Testy.Extensions
         /// </summary>
         public static string ToPrettyJson(this object obj)
         {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+
             if (obj is string text && text.IsJson())
             {
                 return JsonConvert.DeserializeObject<JObject>(text)
@@ -27,6 +30,16 @@ namespace Testy.Extensions
             }
 
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
+        }
+
+        /// <summary>
+        /// Outputs the object in JSON form to the console
+        /// </summary>
+        public static void DumpJson(this object obj)
+        {
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+            
+            Console.WriteLine(obj.ToPrettyJson());
         }
 
         /// <summary>

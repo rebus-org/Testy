@@ -44,5 +44,6 @@
 		<PackageReference Include="NUnit" Version="3.11.0" />
 		<PackageReference Include="nunit3testadapter" Version="3.13.0" />
 		<PackageReference Include="System.ValueTuple" Version="4.3.0" />
+		<PackageReference Include="tababular" Version="3.0.1" />
 	</ItemGroup>
 </Project>

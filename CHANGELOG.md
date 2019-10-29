@@ -32,3 +32,6 @@
 
 ## 0.0.12
 * Make `countForRateCalculation` in ctor of `TimerScope` nullable, too
+
+## 0.1.0
+* Table extensions
