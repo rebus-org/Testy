@@ -35,3 +35,6 @@
 
 ## 0.1.0
 * Table extensions
+
+## 0.2.0
+* Target .NET Standard 2.0
