@@ -52,8 +52,7 @@ namespace Testy.Files
         /// <summary>
         /// Implicitly casts this temp test dir to a string
         /// </summary>
-        public static implicit operator string(TemporaryTestDirectory temporaryTestDirectory) =>
-            temporaryTestDirectory._directoryPath;
+        public static implicit operator string(TemporaryTestDirectory temporaryTestDirectory) => temporaryTestDirectory._directoryPath;
 
         /// <summary>
         /// Returns the path of the test dir

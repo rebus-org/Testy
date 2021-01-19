@@ -38,3 +38,7 @@
 
 ## 0.2.0
 * Target .NET Standard 2.0
+
+## 0.3.0
+* Add `RandomPicksFrom` extension method to make n random picks of items from a list
+* Add `CancellationToken` factory method on `FixtureBase`

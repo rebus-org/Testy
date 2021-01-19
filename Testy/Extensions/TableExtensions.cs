@@ -19,6 +19,7 @@ namespace Testy.Extensions
         public static string ToTable(this IEnumerable rows)
         {
             if (rows == null) throw new ArgumentNullException(nameof(rows));
+            
             return TableFormatter.FormatObjects(rows);
         }
 

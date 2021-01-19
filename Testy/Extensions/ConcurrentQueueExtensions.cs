@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
+// ReSharper disable UnusedMember.Global
 
 namespace Testy.Extensions
 {
@@ -19,6 +20,9 @@ namespace Testy.Extensions
         /// </summary>
         public static void EnqueueRange<TItem>(this ConcurrentQueue<TItem> queue, IEnumerable<TItem> items)
         {
+            if (queue == null) throw new ArgumentNullException(nameof(queue));
+            if (items == null) throw new ArgumentNullException(nameof(items));
+            
             foreach (var item in items)
             {
                 queue.Enqueue(item);

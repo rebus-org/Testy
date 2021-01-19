@@ -15,6 +15,8 @@ namespace Testy.Timers
         /// </summary>
         public PeriodicCallback(TimeSpan interval, Action callback)
         {
+            if (callback == null) throw new ArgumentNullException(nameof(callback));
+
             _timer.Interval = interval.TotalMilliseconds;
             _timer.Elapsed += (o, ea) =>
             {

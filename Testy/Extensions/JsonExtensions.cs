@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+// ReSharper disable UnusedMember.Global
 
 namespace Testy.Extensions
 {

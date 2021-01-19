@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading;
 using NUnit.Framework;
 using Testy.Benchmarking;
 using Testy.Files;
@@ -79,5 +80,10 @@ namespace Testy
         /// Creates a new temporary test directory, which will automatically be removed after the test has finished executing
         /// </summary>
         protected TemporaryTestDirectory NewTempDirectory() => Using(new TemporaryTestDirectory());
+
+        /// <summary>
+        /// Returns a new <see cref="CancellationToken"/> which will be cancelled after <paramref name="delay"/>
+        /// </summary>
+        protected CancellationToken CancelAfter(TimeSpan delay) => Using(new CancellationTokenSource(delay: delay)).Token;
     }
 }
