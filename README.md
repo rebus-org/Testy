@@ -26,6 +26,7 @@ The disposables are disposed in the reverse order of which they were registered,
 because it's a stack.
 
 
+
 ### Temporary test directory
 
 When testing thing in the file system, it's often useful to have easy access to a clean test directory,
@@ -60,6 +61,42 @@ ProcessNames(names.InRandomOrder());
 
 // they're processed in random order!!
 ```
+
+### Getting some random items from a list
+
+For test randomization, it can be useful to introduce variation into values used for testing. If you have a 
+list of things
+
+```csharp
+var things = new[] { 1, 2, 3, 4, 5 };
+```
+
+then you may generate a new list of items consisting of n randomly picked items from that list by going
+
+```csharp
+var randomThings = 10.RandomPicksFrom(things);
+```
+
+where `randomThings` will now be 10 long and contain something like `[2, 2, 1, 5, 4, 5, 5, 2, 3, 1]`.
+
+
+### Cancellation
+
+When you're in a test fixture derived from `FixtureBase`, you can get a new `CancellationToken` set to
+be cancelled after a set timeout by calling `CancelAfter`, e.g. like this:
+
+```csharp
+[Test]
+public async Task TestSomethingAsync()
+{
+	var result = await CallSomethingAsync(cancellationToken: CancelAfter(delay: TimeSpan.FromSeconds(3)));
+
+	Assert.That(result, Is.Not.Null);
+}
+```
+
+
+
 
 ### Disposable callback
 
