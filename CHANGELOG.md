@@ -42,3 +42,6 @@
 ## 0.3.0
 * Add `RandomPicksFrom` extension method to make n random picks of items from a list
 * Add `CancellationToken` factory method on `FixtureBase`
+
+## 0.4.0
+* Set console out to NUnit's text writer
