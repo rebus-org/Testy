@@ -1,6 +1,6 @@
 @echo off
-
 set scriptsdir=%~dp0
+
 set root=%scriptsdir%\..
 set deploydir=%root%\deploy
 set project=%1
@@ -28,13 +28,13 @@ mkdir "%deploydir%"
 
 pushd %root%
 
-dotnet restore
+dotnet restore --interactive
 if %ERRORLEVEL% neq 0 (
 	popd
  	goto exit_fail
 )
 
-dotnet pack "%root%/%project%" -c Release -o "%deploydir%" /p:PackageVersion=%version%
+dotnet pack "%root%/%project%" -c Release -o "%deploydir%" -p:PackageVersion=%version% --no-restore
 if %ERRORLEVEL% neq 0 (
 	popd
  	goto exit_fail

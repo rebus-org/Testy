@@ -1,44 +1,43 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Testy.Benchmarking
+namespace Testy.Benchmarking;
+
+/// <summary>
+/// Measures time spent between instantiation and disposal. Can be used to perform easy low-ceremony benchmarking.
+/// </summary>
+public class TimerScope : IDisposable
 {
+    readonly Stopwatch _stopwatch = Stopwatch.StartNew();
+    readonly int? _countForRateCalculation;
+    readonly string _description;
+
     /// <summary>
-    /// Measures time spent between instantiation and disposal. Can be used to perform easy low-ceremony benchmarking.
+    /// Creates the scope
     /// </summary>
-    public class TimerScope : IDisposable
+    public TimerScope(string description, int? countForRateCalculation = null)
     {
-        readonly Stopwatch _stopwatch = Stopwatch.StartNew();
-        readonly int? _countForRateCalculation;
-        readonly string _description;
+        _description = description;
+        _countForRateCalculation = countForRateCalculation;
+    }
 
-        /// <summary>
-        /// Creates the scope
-        /// </summary>
-        public TimerScope(string description, int? countForRateCalculation = null)
+    /// <summary>
+    /// Disposes the scope
+    /// </summary>
+    public void Dispose()
+    {
+        var elapsedMs = _stopwatch.Elapsed.TotalMilliseconds;
+
+        if (_countForRateCalculation == null)
         {
-            _description = description;
-            _countForRateCalculation = countForRateCalculation;
+            Console.WriteLine($"SCOPE '{_description}' completed in {elapsedMs} ms");
         }
-
-        /// <summary>
-        /// Disposes the scope
-        /// </summary>
-        public void Dispose()
+        else
         {
-            var elapsedMs = _stopwatch.Elapsed.TotalMilliseconds;
+            var millisecondsPerItem = elapsedMs / _countForRateCalculation.GetValueOrDefault(0);
+            var itemsPerMillisecond = _countForRateCalculation.GetValueOrDefault(0) / elapsedMs;
 
-            if (_countForRateCalculation == null)
-            {
-                Console.WriteLine($"SCOPE '{_description}' completed in {elapsedMs} ms");
-            }
-            else
-            {
-                var millisecondsPerItem = elapsedMs / _countForRateCalculation.GetValueOrDefault(0);
-                var itemsPerMillisecond = _countForRateCalculation.GetValueOrDefault(0) / elapsedMs;
-
-                Console.WriteLine($"SCOPE '{_description}' completed in {elapsedMs} ms | {millisecondsPerItem} ms/item | {itemsPerMillisecond} items/ms");
-            }
+            Console.WriteLine($"SCOPE '{_description}' completed in {elapsedMs} ms | {millisecondsPerItem} ms/item | {itemsPerMillisecond} items/ms");
         }
     }
 }
