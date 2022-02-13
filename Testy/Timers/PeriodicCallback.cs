@@ -1,40 +1,39 @@
 ﻿using System;
 using System.Timers;
 
-namespace Testy.Timers
+namespace Testy.Timers;
+
+/// <summary>
+/// Periodically invokes the passed-in callback
+/// </summary>
+public class PeriodicCallback : IDisposable
 {
+    readonly Timer _timer = new Timer();
+
     /// <summary>
-    /// Periodically invokes the passed-in callback
+    /// Creates the periodic callback and starts it
     /// </summary>
-    public class PeriodicCallback : IDisposable
+    public PeriodicCallback(TimeSpan interval, Action callback)
     {
-        readonly Timer _timer = new Timer();
+        if (callback == null) throw new ArgumentNullException(nameof(callback));
 
-        /// <summary>
-        /// Creates the periodic callback and starts it
-        /// </summary>
-        public PeriodicCallback(TimeSpan interval, Action callback)
+        _timer.Interval = interval.TotalMilliseconds;
+        _timer.Elapsed += (o, ea) =>
         {
-            if (callback == null) throw new ArgumentNullException(nameof(callback));
-
-            _timer.Interval = interval.TotalMilliseconds;
-            _timer.Elapsed += (o, ea) =>
+            try
             {
-                try
-                {
-                    callback();
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine($"Error in periodic callback: {exception}");
-                }
-            };
-            _timer.Start();
-        }
-
-        /// <summary>
-        /// Stops the periodic callback
-        /// </summary>
-        public void Dispose() => _timer.Dispose();
+                callback();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Error in periodic callback: {exception}");
+            }
+        };
+        _timer.Start();
     }
+
+    /// <summary>
+    /// Stops the periodic callback
+    /// </summary>
+    public void Dispose() => _timer.Dispose();
 }

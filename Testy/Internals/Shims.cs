@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace Testy.Internals
+namespace Testy.Internals;
+
+static class Shims
 {
-    static class Shims
+    public static string CurrentBaseDirectory()
     {
-        public static string CurrentBaseDirectory()
-        {
-            return AppDomain.CurrentDomain.BaseDirectory;
-        }
+        return AppDomain.CurrentDomain.BaseDirectory;
     }
 }

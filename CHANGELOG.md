@@ -45,3 +45,6 @@
 
 ## 0.4.0
 * Set console out to NUnit's text writer
+
+## 0.5.0
+* Generalize `WaitOrDie` to work with any object and not just `ConcurrentQueue`
