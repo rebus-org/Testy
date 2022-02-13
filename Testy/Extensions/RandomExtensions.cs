@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading;
 // ReSharper disable UnusedMember.Global
 
@@ -12,7 +11,7 @@ namespace Testy.Extensions;
 /// </summary>
 public static class RandomExtensions
 {
-    static readonly ThreadLocal<Random> Random = new ThreadLocal<Random>(() => new Random(DateTime.Now.GetHashCode()));
+    static readonly ThreadLocal<Random> Random = new(() => new Random(DateTime.Now.GetHashCode()));
 
     /// <summary>
     /// Returns the <paramref name="items"/> in random order
@@ -34,6 +33,20 @@ public static class RandomExtensions
         }
 
         return list;
+    }
+
+    /// <summary>
+    /// Gets a random element from the <paramref name="items"/> sequence
+    /// </summary>
+    public static TItem GetRandomElement<TItem>(this IEnumerable<TItem> items)
+    {
+        if (items == null) throw new ArgumentNullException(nameof(items));
+
+        var list = items.ToList();
+
+        if (!list.Any()) throw new InvalidOperationException("Cannot get random element from empty list");
+
+        return list[Random.Value.Next(list.Count)];
     }
 
     /// <summary>

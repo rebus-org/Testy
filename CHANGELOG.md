@@ -48,3 +48,6 @@
 
 ## 0.5.0
 * Generalize `WaitOrDie` to work with any object and not just `ConcurrentQueue`
+
+## 0.6.0
+* Add method to get random element from list
