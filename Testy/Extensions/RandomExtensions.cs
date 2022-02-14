@@ -14,12 +14,28 @@ public static class RandomExtensions
     static readonly ThreadLocal<Random> Random = new(() => new Random(DateTime.Now.GetHashCode()));
 
     /// <summary>
+    /// Returns from 1..n of the items from <paramref name="items"/>
+    /// </summary>
+    public static IReadOnlyList<TItem> TakeSome<TItem>(this IEnumerable<TItem> items)
+    {
+        if (items == null) throw new ArgumentNullException(nameof(items));
+
+        var list = items.ToList();
+
+        if (!list.Any()) throw new InvalidOperationException("Cannot get random number of elements from empty list");
+
+        var count = Random.Value.Next(1, list.Count - 1);
+
+        return list.Take(count).ToList();
+    }
+
+    /// <summary>
     /// Returns the <paramref name="items"/> in random order
     /// </summary>
     public static IReadOnlyList<TItem> InRandomOrder<TItem>(this IEnumerable<TItem> items)
     {
         if (items == null) throw new ArgumentNullException(nameof(items));
-            
+
         var list = items.ToList();
         var random = Random.Value;
 
@@ -55,7 +71,7 @@ public static class RandomExtensions
     public static IReadOnlyList<TItem> RandomPicksFrom<TItem>(this int count, IEnumerable<TItem> items)
     {
         if (items == null) throw new ArgumentNullException(nameof(items));
-            
+
         var list = items.ToList();
 
         if (!list.Any())
@@ -64,7 +80,7 @@ public static class RandomExtensions
         }
 
         int RandomIndex() => Random.Value.Next(list.Count);
-          
+
         TItem PickItem() => list[RandomIndex()];
 
         return Enumerable.Repeat<Func<TItem>>(PickItem, count).Select(fn => fn()).ToList();

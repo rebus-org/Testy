@@ -51,3 +51,6 @@
 
 ## 0.6.0
 * Add method to get random element from list
+
+## 0.7.0
+* `TakeSome` extension
