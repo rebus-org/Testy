@@ -54,3 +54,6 @@
 
 ## 0.7.0
 * `TakeSome` extension
+
+## 0.8.0
+* Add `EnvironmentVariable` thing
