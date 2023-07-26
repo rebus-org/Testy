@@ -16,8 +16,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="newtonsoft.json" Version="13.0.1" />
-		<PackageReference Include="NUnit" Version="3.13.2" />
+		<PackageReference Include="newtonsoft.json" Version="13.0.3" />
+		<PackageReference Include="NUnit" Version="3.13.3" />
 		<PackageReference Include="System.ValueTuple" Version="4.5.0" />
 		<PackageReference Include="tababular" Version="4.1.0" />
 	</ItemGroup>

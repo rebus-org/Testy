@@ -10,7 +10,7 @@ namespace Testy.Extensions;
 /// </summary>
 public static class TableExtensions
 {
-    static readonly TableFormatter TableFormatter = new TableFormatter(new Hints { CollapseVerticallyWhenSingleLine = true, MaxTableWidth = 200 });
+    static readonly TableFormatter TableFormatter = new(new Hints { CollapseVerticallyWhenSingleLine = true, MaxTableWidth = 200 });
 
     /// <summary>
     /// Renders a string that displays data from the properties of the given <paramref name="rows"/>

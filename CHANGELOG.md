@@ -57,3 +57,6 @@
 
 ## 0.8.0
 * Add `EnvironmentVariable` thing
+
+## 0.9.0
+* Update packages

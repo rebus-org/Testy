@@ -17,7 +17,7 @@ public abstract class FixtureBase
 {
     static FixtureBase() => Console.SetOut(TestContext.Progress);
 
-    readonly ConcurrentStack<IDisposable> _disposables = new ConcurrentStack<IDisposable>();
+    readonly ConcurrentStack<IDisposable> _disposables = new();
 
     /// <summary>
     /// Called by NUnit before each test. Will call the virtual <see cref="SetUp"/> method, which can be overridden in concrete test fixtures.

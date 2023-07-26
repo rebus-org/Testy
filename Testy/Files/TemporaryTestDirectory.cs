@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using Testy.Internals;
 
 namespace Testy.Files;
 
@@ -26,7 +25,7 @@ public class TemporaryTestDirectory : IDisposable
         {
             var number = Interlocked.Increment(ref _counter);
 
-            _directoryPath = Path.Combine(rootDirectory ?? Shims.CurrentBaseDirectory(), $"testdirectory-{number}");
+            _directoryPath = Path.Combine(rootDirectory ?? AppDomain.CurrentDomain.BaseDirectory, $"testdirectory-{number}");
 
             if (!Directory.Exists(_directoryPath)) break;
         }

@@ -83,6 +83,6 @@ public static class RandomExtensions
 
         TItem PickItem() => list[RandomIndex()];
 
-        return Enumerable.Repeat<Func<TItem>>(PickItem, count).Select(fn => fn()).ToList();
+        return Enumerable.Repeat(PickItem, count).Select(fn => fn()).ToList();
     }
 }

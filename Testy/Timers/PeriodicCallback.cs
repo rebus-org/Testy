@@ -8,7 +8,7 @@ namespace Testy.Timers;
 /// </summary>
 public class PeriodicCallback : IDisposable
 {
-    readonly Timer _timer = new Timer();
+    readonly Timer _timer = new();
 
     /// <summary>
     /// Creates the periodic callback and starts it
@@ -18,7 +18,7 @@ public class PeriodicCallback : IDisposable
         if (callback == null) throw new ArgumentNullException(nameof(callback));
 
         _timer.Interval = interval.TotalMilliseconds;
-        _timer.Elapsed += (o, ea) =>
+        _timer.Elapsed += (_, _) =>
         {
             try
             {

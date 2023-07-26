@@ -10,7 +10,7 @@ namespace Testy.Extensions;
 /// </summary>
 public static class JsonExtensions
 {
-    static readonly JsonSerializerSettings FullTypeNameInfo = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+    static readonly JsonSerializerSettings FullTypeNameInfo = new() { TypeNameHandling = TypeNameHandling.All };
 
     /// <summary>
     /// Serializes the object to JSON
