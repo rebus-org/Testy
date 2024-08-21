@@ -60,3 +60,6 @@
 
 ## 0.9.0
 * Update packages
+
+## 0.10.0
+* Update dependencies and add logo to nuggie
