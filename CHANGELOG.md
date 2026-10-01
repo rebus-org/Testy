@@ -63,3 +63,7 @@
 
 ## 0.10.0
 * Update dependencies and add logo to nuggie
+
+## 0.11.0
+* NUnit 5
+* Remove outdated compilation targets

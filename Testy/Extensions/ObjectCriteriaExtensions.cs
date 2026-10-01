@@ -18,7 +18,7 @@ public static class ObjectCriteriaExtensions
     /// to provide those additional details.
     /// Please note that the passed-in expressions are – in fact – EXPRESSIONS, so there's limit as to how complex they can be.
     /// </summary>
-    public static async Task WaitOrDie<TObject>(
+    public static async Task WaitOrDieAsync<TObject>(
         this TObject obj,
         Expression<Func<TObject, bool>> completionExpression,
         Expression<Func<TObject, bool>> failExpression = null,
